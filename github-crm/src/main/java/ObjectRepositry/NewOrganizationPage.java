@@ -1,0 +1,76 @@
+package ObjectRepositry;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+public class NewOrganizationPage {
+	WebDriver driver;
+
+	public NewOrganizationPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	@FindBy(name  ="accountname")
+	private WebElement orgName;
+	
+	public WebElement getOrgName() {
+		return orgName;
+	}
+
+	
+
+	public WebElement getSave() {
+		return save;
+	}
+
+	
+
+	public WebElement getIndustryDD() {
+		return industryDD;
+	}
+
+	
+
+	public WebElement getTypeDD() {
+		return typeDD;
+	}
+
+		public WebElement getPhNumber() {
+		return phNumber;
+	}
+
+	
+	@FindBy(xpath = "//input[@title='Save [Alt+S]']")
+	private WebElement save;
+	
+	@FindBy(name= "industry")
+	private WebElement industryDD;
+	
+	@FindBy(name = "accounttype")
+	private WebElement typeDD;
+
+	@FindBy(id = "phone")
+	private WebElement phNumber;
+	public void createOrg(String org) {
+		orgName.sendKeys(org);
+	}
+	public void createOrg(String org,String industry) {
+		orgName.sendKeys(org);
+		Select sel1=new Select(industryDD);
+		sel1.selectByVisibleText(industry);
+		save.click();
+	}
+		
+		
+public void createOrg(String org,String industry,String type) {
+	orgName.sendKeys(org);
+	Select sel1=new Select(industryDD);
+	sel1.selectByVisibleText(industry);
+	Select sel2=new Select(typeDD);
+	sel2.selectByVisibleText(type);
+	save.click();
+}
+}
